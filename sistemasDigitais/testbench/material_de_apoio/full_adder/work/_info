@@ -1,0 +1,91 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/workspaceFaculdade/TerceiroSemestre/third_semester/sistemasDigitais/testbench/material_de_apoio/full_adder
+Efull_adder
+Z1 w1710200581
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z4 8full_adder.vhd
+Z5 Ffull_adder.vhd
+l0
+L10
+VcnADLc>;bg2`ZKVjazTfi2
+!s100 R^b4;@`lP<`FeH2]J5]302
+Z6 OV;C;10.5b;63
+32
+Z7 !s110 1710204699
+!i10b 1
+Z8 !s108 1710204699.000000
+Z9 !s90 -reportprogress|300|-work|work|full_adder.vhd|
+Z10 !s107 full_adder.vhd|
+!i113 1
+Z11 o-work work
+Z12 tExplicit 1 CvgOpt 0
+Afull_adder
+R2
+R3
+Z13 DEx4 work 10 full_adder 0 22 cnADLc>;bg2`ZKVjazTfi2
+l19
+L18
+VeA^o>^N[HdO[b6JO;akeC2
+!s100 ZNP51OA2;:U76;F[cI9]D2
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Etb
+Z14 w1710204695
+Z15 DPx4 ieee 16 std_logic_textio 0 22 V5TSK`;aJKC<l]CEg1>mz1
+R2
+R3
+R0
+Z16 8tb.vhd
+Z17 Ftb.vhd
+l0
+L12
+VX9L3JAmXKPfGHEUj5R3zQ3
+!s100 N>=I>BYb5I3808moVc?AM0
+R6
+32
+R7
+!i10b 1
+R8
+Z18 !s90 -reportprogress|300|-work|work|tb.vhd|
+Z19 !s107 tb.vhd|
+!i113 1
+R11
+R12
+Atb
+R13
+R15
+R2
+R3
+DEx4 work 2 tb 0 22 X9L3JAmXKPfGHEUj5R3zQ3
+l28
+L19
+V0McCVUiYlzg9<[bFWgl>B1
+!s100 b8K;_iXTC;?NkkOo=ikhY0
+R6
+32
+R7
+!i10b 1
+R8
+R18
+R19
+!i113 1
+R11
+R12

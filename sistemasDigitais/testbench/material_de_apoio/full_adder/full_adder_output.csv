@@ -1,0 +1,5 @@
+#a;b;cin;cout_actual;cout;sum_actual;sum;cout_test_results;sum_test_results
+0;0;0;0;0;0;0;OK;OK;
+1;0;0;0;0;1;1;OK;OK;
+1;1;0;0;1;0;0;Error;OK;
+1;1;1;1;1;1;1;OK;OK;
