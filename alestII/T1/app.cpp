@@ -1,6 +1,5 @@
-#include <fstream>
 #include <iostream>
-#include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -40,48 +39,33 @@ void followUp(){}
 
 
 int main(){
-    int line = 0, col = 0;
+    int line = 50, col = 50;
+    string character;
 
     cin >> line >> col;
 
-    string map[line];
-    //vector
-
-    cout << line << " " << col << endl;
-
-    getline(cin, map[0]);
+    vector<string>map;
 
     for(int i = 0; i < line; i++){
-        getline(cin, map[i]);
+        getline(cin, character);
+        if(character.empty()) continue;
+        map.push_back(character);
     }
 
-    // for(int i = 0; i < line; i++){
-    //     cout << map[i] << endl;
-    // }
+    int *actLine, *actColunm;
 
-    cout << endl;
+    int zero = 0;
 
-    for(int j = 0; j < line; j++){
-        for(int i = 0; i < col; i++){
-             cout << map[j][i];
-        }
-        cout << endl;
-    }
-
-    int firstL = 0, firstC = 0;
-
-    for(int j = 0; j < line; j++){
-        if(map[j][0] == '-'){
-            firstL = j;
-            firstC = 0;
-            cout << j << endl;
+    for(int i = 0; i < line; i++){
+        if(map[i][zero] == '-'){
+            actLine = &i;
+            actColunm = &zero;
             break;
         }
     }
-    cout << firstL << " " << firstC << endl;
 
+    cout << *actLine << " " << *actColunm;
 
-   // cout << "numero " <<  stoi(map[0][4]) << endl;
 
     return 0;
 }
