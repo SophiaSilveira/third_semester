@@ -1,42 +1,58 @@
 #include <iostream>
 #include <vector>
+#include <string>
+#include <cctype>
 
 using namespace std;
 
-//usar vector para letras
-//usar vector para números
+int followRigth(vector<string> &map, int * &line, int *&colunm);
+int followDown(vector<string> &map, int * &line, int *&colunm);
+int followLeft(vector<string> &map, int * &line, int *&colunm);
+int followUp(vector<string> &map, int * &line, int *&colunm);
 
-void sumRight(){
-    //pega a matriz, linha, coluna e soma
-    //faz um while que multiplica o número por 10 em cada iteração e soma
+int sumDown(vector<string> &map, int * &line, int *&colunm){
+    int sum = stoi(map[*line].substr((*colunm), 1));
 
-    //guarda número no vetor
-    //soma com o total
-    //chama followRigth
+    while(isdigit(map[++(*line)][*colunm])){
+        int auxDigit = stoi(map[*line].substr((*colunm), 1));
+        sum = (sum * 10) + auxDigit;
+    }
+
+    return sum;
 }
 
-void sumDown(){}
-void sumLeft(){}
-void sumUp(){}
+int sumRight(vector<string> &map, int * &line, int *&colunm){
+    int sum = stoi(map[*line].substr((*colunm), 1));
 
-void followRigth(){
-    //pegar a matriz, linha, coluna e soma
+    while(isdigit(map[*line][++(*colunm)])){
+        int auxDigit = stoi(map[*line].substr((*colunm), 1));
+        sum = (sum * 10) + auxDigit;
+    }
 
-    //andar para direita até encontrar algo
-
-    //verifica se é o fim
-
-    //verifica se segue para baixo \addindex
-
-    //verifica se segue para cima /
-
-    //chama calc
+    return sum;
 }
 
-void followDown(){}
-void followLeft(){}
-void followUp(){}
+int sumLeft(vector<string> &map, int * &line, int *&colunm){
+    int sum = stoi(map[*line].substr((*colunm), 1));
 
+    while(isdigit(map[*line][--(*colunm)])){
+        int auxDigit = stoi(map[*line].substr((*colunm), 1));
+        sum = (sum * 10) + auxDigit;
+    }
+
+    return sum;
+}
+
+int sumUp(vector<string> &map, int * &line, int *&colunm){
+    int sum = stoi(map[*line].substr((*colunm), 1));
+
+    while(isdigit(map[--(*line)][*colunm])){
+        int auxDigit = stoi(map[*line].substr((*colunm), 1));
+        sum = (sum * 10) + auxDigit;
+    }
+
+    return sum;
+}
 
 int main(){
     int line = 50, col = 50;
@@ -50,9 +66,10 @@ int main(){
         getline(cin, character);
         if(character.empty()) continue;
         map.push_back(character);
+        
     }
 
-    int *actLine, *actColunm;
+    int *actLine = 0, *actColunm = 0;
 
     int zero = 0;
 
@@ -64,8 +81,70 @@ int main(){
         }
     }
 
-    cout << *actLine << " " << *actColunm;
+    int finalValue = 0;
+    finalValue = followRigth(map, actLine, actColunm);
 
+    cout << "LINHA: " << *actLine << endl <<"COLUNA: " << *actColunm << endl <<  "SOMA: " << finalValue << endl;
 
     return 0;
+}
+
+int followRigth(vector<string> &map, int * &line, int *&colunm){
+    int value = 0;
+    do{
+        (*colunm)++;
+        if(isdigit(map[*line][*colunm])) value += sumRight(map, line, colunm); 
+    
+    }while((map[*line][*colunm] == '-' || map[*line][*colunm] == '|'));
+
+    if(map[*line][*colunm] == '\\') return value += followDown(map, line, colunm);
+
+    if(map[*line][*colunm] == '/') return value += followUp(map, line, colunm);
+
+    if(map[*line][*colunm] == '#') return value;
+}
+
+int followDown(vector<string> &map, int * &line, int *&colunm){
+    int value = 0;
+    do{
+        (*line)++;
+        if(isdigit(map[*line][*colunm])) value += sumDown(map, line, colunm);
+
+    }while((map[*line][*colunm] == '-' || map[*line][*colunm] == '|'));
+
+    if(map[*line][*colunm] == '\\') return value += followRigth(map, line, colunm);
+
+    if(map[*line][*colunm] == '/') return value += followLeft(map, line, colunm);
+
+    if(map[*line][*colunm] == '#') return value;
+}
+
+int followLeft(vector<string> &map, int * &line, int *&colunm){
+    int value = 0;
+    do{
+        (*colunm)--;
+        if(isdigit(map[*line][*colunm])) value += sumLeft(map, line, colunm);
+
+    }while((map[*line][*colunm] == '-' || map[*line][*colunm] == '|'));
+
+    if(map[*line][*colunm] == '\\') return value += followUp(map, line, colunm);
+
+    if(map[*line][*colunm] == '/') return value += followDown(map, line, colunm);
+
+    if(map[*line][*colunm] == '#') return value;
+}
+
+int followUp(vector<string> &map, int * &line, int *&colunm){
+    int value = 0;
+    do{
+        (*line)--;
+        if(isdigit(map[*line][*colunm])) value += sumUp(map, line, colunm);
+        
+    }while((map[*line][*colunm] == '-' || map[*line][*colunm] == '|'));
+
+    if(map[*line][*colunm] == '\\') return value += followLeft(map, line, colunm);
+
+    if(map[*line][*colunm] == '/') return value += followRigth(map, line, colunm);
+
+    if(map[*line][*colunm] == '#') return value;
 }
