@@ -55,18 +55,15 @@ int sumUp(vector<string> &map, int * &line, int *&colunm){
 }
 
 int main(){
-    int line = 50, col = 50;
+    int line, col;
     string character;
 
     cin >> line >> col;
 
     vector<string>map;
 
-    for(int i = 0; i < line; i++){
-        getline(cin, character);
-        if(character.empty()) continue;
+    while(getline(cin, character)){
         map.push_back(character);
-        
     }
 
     int *actLine = 0, *actColunm = 0;
