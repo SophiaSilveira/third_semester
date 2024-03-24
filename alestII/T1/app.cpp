@@ -2,8 +2,11 @@
 #include <vector>
 #include <string>
 #include <cctype>
+#include <chrono>
+#include <iomanip>
 
 using namespace std;
+using namespace chrono;
 
 int followRigth(vector<string> &map, int * &line, int *&colunm);
 int followDown(vector<string> &map, int * &line, int *&colunm);
@@ -55,33 +58,36 @@ int sumUp(vector<string> &map, int * &line, int *&colunm){
 }
 
 int main(){
-    int line, col;
-    string character;
+    int line, col, finalAmount;
+    int *actLine = nullptr, *actColunm = nullptr;
 
-    cin >> line >> col;
+    string character, nameMap;
 
     vector<string>map;
+
+    auto start = high_resolution_clock::now();
+
+    cin >> nameMap >> line >> col;
 
     while(getline(cin, character)){
         map.push_back(character);
     }
 
-    int *actLine = 0, *actColunm = 0;
-
-    int zero = 0;
-
-    for(int i = 0; i < line; i++){
-        if(map[i][zero] == '-'){
+    for(int i = 0, j = 0; i < line; i++){
+        if(map[i][j] == '-'){
             actLine = &i;
-            actColunm = &zero;
+            actColunm = &j;
             break;
         }
     }
 
-    int finalValue = 0;
-    finalValue = followRigth(map, actLine, actColunm);
+    finalAmount = followRigth(map, actLine, actColunm);
 
-    cout << "LINHA: " << *actLine << endl <<"COLUNA: " << *actColunm << endl <<  "SOMA: " << finalValue << endl;
+    auto stop = high_resolution_clock::now();
+
+    auto duration = duration_cast<microseconds>(stop - start);
+
+    cout << nameMap << " | R$" << finalAmount << ",00 | " << duration.count() << "us |" << endl;
 
     return 0;
 }
